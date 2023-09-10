@@ -1,7 +1,7 @@
-#!/usr/bin/node
+//#!/usr/bin/node
 
 
-const add =(a,b)=>{
-    let sum = a + b;
-    return sum
+function add(a,b){
+    return a + b;
 }
+console.log(add(4, 85));
