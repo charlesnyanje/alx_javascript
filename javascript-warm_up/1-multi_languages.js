@@ -1,10 +1,8 @@
-#!/usr/bin/node
+//#!/usr/bin/node
 
 
 const first_line = "C is fun";
-const second_line = "Python is cool";
-const third_line = "Javascript is amazing";
+const second_line = "\nPython is cool";
+const third_line = "\nJavascript is amazing";
 
-console.log(first_line);
-console.log(second_line);
-console.log(third_line);
+console.log(first_line,second_line,third_line);
