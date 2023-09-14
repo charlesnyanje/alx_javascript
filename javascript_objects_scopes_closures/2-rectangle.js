@@ -1,15 +1,14 @@
-#!/usr/bin/node
-const Rectangle = require("./0-rectangle");
+//#!/usr/bin/node
 
 module.exports = class Rectangle {
   constructor(w, h) {
-    this.width = w;
-    this.height = h;
-  }
-
-  empty_obj() {
-    if (this.w || this.h == 0 || this.w || this.h < 0) {
-      const myObj = {};
+    if (w <= 0 || h <= 0 || !Number.isInteger(w) || !Number.isInteger(h)){
+        return {};
+    }
+    else{
+        this.width = w;
+        this.height = h;
     }
   }
+  
 };
