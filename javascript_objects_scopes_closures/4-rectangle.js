@@ -20,6 +20,3 @@ module.exports = class Rectangle {
 };
 
 x = new Rectangle();
-
-
-
