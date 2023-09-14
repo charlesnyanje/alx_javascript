@@ -1,4 +1,4 @@
-#!/usr/bin/node
+//#!/usr/bin/node
 
 const Rectangle = require("./0-rectangle");
 
@@ -16,6 +16,13 @@ module.exports = class Rectangle {
     for(let i=0; i<this.height; i++){
         console.log("X".repeat(this.width));
     }
+  }
+  rotate(){
+    [this.width, this.height] = [this.height, this.width];
+  }
+  double(){
+    this.width *=2;
+    this.height *=2;
   }
 };
 
