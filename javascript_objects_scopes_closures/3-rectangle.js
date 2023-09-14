@@ -19,7 +19,7 @@ module.exports = class Rectangle {
   }
 };
 
-myRectangle = new Rectangle();
+x = new Rectangle();
 
 
 
