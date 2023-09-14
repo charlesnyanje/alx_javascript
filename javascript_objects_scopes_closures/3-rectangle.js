@@ -13,11 +13,11 @@ module.exports = class Rectangle {
     }
   }
   print(){
-    console.log("XX");
+    for(let i=0; i<this.width; i++){
+        console.log("X");
+    }
   }
   
 };
 
-myRectangle = new Rectangle();
-myRectangle.print
 
