@@ -1,7 +1,9 @@
 const request = require('request');
 
+const URL = "";
+
 request
-.get("https://intranet.alxswe.com/doesn't exist")
+.get(URL)
 .on('response', function(response) {
     console.log("code:",response.statusCode);
 })
