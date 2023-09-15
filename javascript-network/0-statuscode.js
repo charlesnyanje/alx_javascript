@@ -1,5 +1,6 @@
 const request = require('request');
 
+const GET = "";
 
 request
 .get(GET)
