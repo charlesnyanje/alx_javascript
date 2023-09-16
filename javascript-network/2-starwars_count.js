@@ -1,7 +1,9 @@
 const request = require("request");
 
 const url = "https://swapi-api.alx-tools.com/api/films/";
-const characterId = 18;
+
+const characterId = "";
+function getCharacterID(characterId){
 
 request.get(url, (err, response, body) => {
   const filmsData = JSON.parse(body);
@@ -17,3 +19,6 @@ request.get(url, (err, response, body) => {
     `Number of films with Wedge Antilles: ${filmsWithWedgeAntilles.length}`
   );
 });
+}
+
+getCharacterID(characterId)
