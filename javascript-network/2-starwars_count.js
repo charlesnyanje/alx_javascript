@@ -1,7 +1,9 @@
 const request = require("request");
 
-function getCharacterID(characterId) {
+
   const url = `${process.argv[2]}`;
+  const characterId = `${process.argv[3]}`;
+  
   request.get(url, (err, response, body) => {
     const filmsData = JSON.parse(body);
 
@@ -13,7 +15,7 @@ function getCharacterID(characterId) {
 
     console.log(`${filmsWithWedgeAntilles.length}`);
   });
-}
-const characterId = `${process.argv[3]}`;
 
-getCharacterID(characterId);
+
+
+
