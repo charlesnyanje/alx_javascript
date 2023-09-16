@@ -1,7 +1,7 @@
 const request = require('request');
 
-const url = 'https://swapi-api.alx-tools.com/api/films/';
-const characterId = 18;
+const url = `${process.argv[2]}`;
+const characterId = `${process.argv[3]}`;
 
 
 request.get(url, (err, response, body) => {
