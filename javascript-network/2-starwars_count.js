@@ -1,21 +1,19 @@
 const request = require("request");
 
+const url = "https://swapi-api.alx-tools.com/api/films/";
+const characterId = 18;
 
-  const url = `${process.argv[2]}`;
-  const characterId = 18;
+request.get(url, (err, response, body) => {
+  const filmsData = JSON.parse(body);
 
-  request.get(url, (err, response, body) => {
-    const filmsData = JSON.parse(body);
+  const filmsWithWedgeAntilles = filmsData.results.filter((film) =>
+    film.characters.includes(
+      `https://swapi-api.alx-tools.com/api/people/${characterId}/`
+    )
+  );
 
-    const filmsWithWedgeAntilles = filmsData.results.filter((film) =>
-      film.characters.includes(
-        `${url}/${characterId}/`
-      )
-    );
-
-    console.log(`${filmsWithWedgeAntilles.length}`);
-  });
-
-
-
-
+  // Print the number of films where "Wedge Antilles" is present
+  console.log(
+    `Number of films with Wedge Antilles: ${filmsWithWedgeAntilles.length}`
+  );
+});
