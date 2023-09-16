@@ -1,7 +1,7 @@
 const request = require('request');
 
 
-const URL = process.argv[0]
+const URL = `${process.argv[2]}`;
 
 request
   .get(URL)
