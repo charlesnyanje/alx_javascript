@@ -2,8 +2,8 @@ const request = require("request");
 
 
   const url = `${process.argv[2]}`;
-  const characterId = `${process.argv[3]}`;
-  
+  const characterId = 18;
+
   request.get(url, (err, response, body) => {
     const filmsData = JSON.parse(body);
 
