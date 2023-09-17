@@ -12,7 +12,7 @@ request.get(url, (err, response, body) => {
 
   const filmsWithWedgeAntilles = filmsData.results.filter((film) =>
     film.characters.includes(
-      `${url}${characterId}`
+      `https://swapi-api.alx-tools.com/api/people/${characterId}/`
     )
   );
 
