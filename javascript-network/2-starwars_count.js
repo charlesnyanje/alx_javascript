@@ -1,6 +1,6 @@
 const request = require("request");
 
-const characterId = process.argv[3]
+const characterId = `${process.argv[3]}`
 
 const url = `${process.argv[2]}${characterId}`
 
