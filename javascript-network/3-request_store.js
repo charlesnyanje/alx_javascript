@@ -28,7 +28,7 @@ function fetchAndStoreWebpage(url, filePath) {
       if (err) {
         console.error('Error writing to file:', err);
       } else {
-        console.log(`${filePath}`);
+        //console.log(`${filePath}`);
       }
     });
   });
