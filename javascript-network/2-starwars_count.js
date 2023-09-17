@@ -1,8 +1,9 @@
 const request = require("request");
 
-const url = "https://swapi-api.alx-tools.com/api/films/";
+const characterId = process.argv[3]
 
-const characterId = `${process.argv[3]}`;
+const url = `${process.argv[2]}${characterId}`
+
 
 function getCharacterID(characterId){
 
@@ -11,7 +12,7 @@ request.get(url, (err, response, body) => {
 
   const filmsWithWedgeAntilles = filmsData.results.filter((film) =>
     film.characters.includes(
-      `https://swapi-api.alx-tools.com/api/people/${characterId}/`
+      `${url}${characterId}`
     )
   );
 
