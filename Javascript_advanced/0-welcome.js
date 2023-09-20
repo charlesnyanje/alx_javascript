@@ -6,4 +6,4 @@ function welcome(firstName, lastName){
     }
     displayFullname()
 }
-welcome(`${firstName},${lastName}`)
+welcome('Holberton', 'School')
