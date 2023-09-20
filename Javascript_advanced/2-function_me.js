@@ -4,9 +4,9 @@ function welcomeMessage(fullName) {
   };
 }
 
-guillaume = welcomeMessage("guillaume");
-alex = welcomeMessage("alex");
-fred = welcomeMessage("fred");
+guillaume = welcomeMessage("Guillaume");
+alex = welcomeMessage("Alex");
+fred = welcomeMessage("Fred");
 
 guillaume();
 alex();
