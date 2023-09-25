@@ -7,8 +7,8 @@ function setCookies() {
   const expires = `expires=${expirationDate.toUTCString()}`;
 
   
-  document.cookie = `firstname=${firstnameInput}; ${expires}`;
-  document.cookie = `email=${emailInput}; ${expires}`;
+  document.cookie = `firstname=${firstnameInput}; ${expires}; path=/`;
+  document.cookie = `email=${emailInput}; ${expires}; path=/`;
 }
 
 function showCookies() {
