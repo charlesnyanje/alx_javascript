@@ -1,10 +1,17 @@
 {
+  "name": "cookies_local_storage",
+  "version": "1.0.0",
+  "description": "This repository contains JavaScript code examples and explanations for working with cookies and local storage in web development. Cookies and local storage are essential tools for storing and managing data on the client-side of web applications. This README provides an introduction to cookies and local storage, along with code samples and best practices for their use.",
+  "main": "webpack.config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
   "devDependencies": {
     "webpack": "^5.88.2",
     "webpack-cli": "^5.1.4",
     "webpack-dev-server": "^4.15.1"
-  },
-  "dependencies": {
-    "js-cookie": "^3.0.5"
   }
 }
