@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shopping Cart</title>
+  </head>
+  <body>
+    <h1>Available Items</h1>
+    <ul id="item-list"></ul>
+    <p id="cart-message"></p>
+
+    <script>
+      // Available items
+      const availableItems = ["Shampoo", "Soap", "Sponge", "Water"];
+
+      // Function to add an item to the cart
+      function addItemToCart(item) {
+        sessionStorage.setItem(item, "true");
+        displayCart();
+      }
+
+      // Function to create the item list
+      function createStore() {
+        const itemList = document.getElementById("item-list");
+        itemList.innerHTML = "";
+
+        availableItems.forEach((item) => {
+          const li = document.createElement("li");
+          li.textContent = item;
+          li.addEventListener("click", () => addItemToCart(item));
+          itemList.appendChild(li);
+        });
+      }
+
+      // Function to display the cart message
+      function displayCart() {
+        const cartMessage = document.getElementById("cart-message");
+        const cartItems = Object.keys(sessionStorage);
+
+        if (cartItems.length === 0) {
+          cartMessage.textContent = "";
+        } else {
+          const itemCount = cartItems.length;
+          cartMessage.textContent = `You previously had ${itemCount} item${
+            itemCount > 1 ? "s" : ""
+          } in your cart.`;
+        }
+      }
+
+      // Initialize the store and cart message
+      createStore();
+      displayCart();
+    </script>
+  </body>
+</html>
