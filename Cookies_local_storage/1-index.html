@@ -23,6 +23,49 @@
         <button id="showcookies">Show the cookies</button>
     </div>
     <div id="output"></div>
-    <script src="./src/index.js"></script>
+    <script>
+      function setCookies() {
+        const firstnameInput = document.getElementById('firstname').value;
+        const emailInput = document.getElementById('email').value;
+      
+        // Calculate the expiration date in milliseconds (10 days from now)
+        const expirationDate = new Date(Date.now() + 10 * 24 * 60 * 60 * 1000);
+      
+        // Convert the expiration date to a string in the correct format
+        const expires = `expires=${expirationDate.toUTCString()}`;
+      
+        // Set the cookies with the specified expiration date and path ("/" for the root)
+        document.cookie = `firstname=${firstnameInput}; ${expires}; path=/`;
+        document.cookie = `email=${emailInput}; ${expires}; path=/`;
+      }
+      
+      function getCookie(name) {
+        const cookies = document.cookie.split(';');
+        for (const cookie of cookies) {
+          const [cookieName, cookieValue] = cookie.trim().split('=');
+          if (cookieName === name) {
+            return decodeURIComponent(cookieValue);
+          }
+        }
+        return '';
+      }
+      
+      function showCookies() {
+        const emailCookie = getCookie('email');
+        const firstnameCookie = getCookie('firstname');
+        const outputDiv = document.getElementById('output');
+      
+        const p = document.createElement('p');
+        p.innerHTML = `Email: ${emailCookie} - Firstname: ${firstnameCookie}`;
+      
+        outputDiv.innerHTML = ''; // Clear previous content
+        outputDiv.appendChild(p);
+      }
+      
+      // Attach event listeners to buttons
+      document.getElementById('login').addEventListener('click', setCookies);
+      document.getElementById('showcookies').addEventListener('click', showCookies);
+      
+    </script>
   </body>
 </html>
