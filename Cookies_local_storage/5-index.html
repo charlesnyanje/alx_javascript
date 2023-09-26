@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Shopping Cart</title>
+  </head>
+  <body>
+    <h1>Available Items</h1>
+    <ul id="item-list"></ul>
+    <p id="cart-message"></p>
+
+    <script>
+      // Check if local storage is available
+      function isLocalStorageAvailable() {
+        try {
+          localStorage.setItem("test", "test");
+          localStorage.removeItem("test");
+          return true;
+        } catch (e) {
+          return false;
+        }
+      }
+
+      // Available items
+      const availableItems = ["Shampoo", "Soap", "Sponge", "Water"];
+
+      // Function to add an item to the cart
+      function addItemToCart(item) {
+        localStorage.setItem(item, "true");
+        displayCart();
+      }
+
+      // Function to create the item list
+      function createStore() {
+        const itemList = document.getElementById("item-list");
+        itemList.innerHTML = "";
+
+        availableItems.forEach((item) => {
+          const li = document.createElement("li");
+          li.textContent = item;
+          li.addEventListener("click", () => addItemToCart(item));
+          itemList.appendChild(li);
+        });
+      }
+
+      // Function to display the cart message
+      function displayCart() {
+        const cartMessage = document.getElementById("cart-message");
+        const cartItems = Object.keys(localStorage);
+
+        if (cartItems.length === 0) {
+          cartMessage.textContent = "";
+        } else {
+          const itemCount = cartItems.length;
+          cartMessage.textContent = `You previously had ${itemCount} item${
+            itemCount > 1 ? "s" : ""
+          } in your cart.`;
+        }
+      }
+
+      // Check if local storage is available
+      if (isLocalStorageAvailable()) {
+        // Initialize the store and cart message
+        createStore();
+        displayCart();
+      } else {
+        alert(
+          "Sorry, your browser does not support Web storage. Try again with a better one."
+        );
+      }
+    </script>
+  </body>
+</html>
