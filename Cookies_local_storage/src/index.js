@@ -1,47 +1,56 @@
-function setCookies() {
-  const firstnameInput = document.getElementById("firstname").value;
-  const emailInput = document.getElementById("email").value;
+// Import the js-cookie library
+import Cookies from 'js-cookie';
 
+function setCookiesAndShowWelcomeMessage() {
+  const firstnameInput = document.getElementById('firstname').value;
+  const emailInput = document.getElementById('email').value;
+
+  // Calculate the expiration date in milliseconds (10 days from now)
   const expirationDate = new Date(Date.now() + 10 * 24 * 60 * 60 * 1000);
 
-  const expires = `expires=${expirationDate.toUTCString()}`;
+  // Set the cookies using js-cookie
+  Cookies.set('firstname', firstnameInput, { expires: expirationDate });
+  Cookies.set('email', emailInput, { expires: expirationDate });
 
-  document.cookie = `firstname=${firstnameInput}; ${expires}; path=/`;
-  document.cookie = `email=${emailInput}; ${expires}; path=/`;
+  showWelcomeMessageOrForm();
 }
 
-function getCookie(name) {
-  const cookies = document.cookie.split(";");
-  for (const cookie of cookies) {
-    const [cookieName, cookieValue] = cookie.trim().split("=");
-    if (cookieName === name) {
-      return decodeURIComponent(cookieValue);
-    }
+function showWelcomeMessageOrForm() {
+  const firstnameCookie = Cookies.get('firstname');
+  const body = document.body;
+
+  if (firstnameCookie) {
+    // Create a welcome message using JavaScript
+    const welcomeMessage = document.createElement('h1');
+    welcomeMessage.textContent = `Welcome ${firstnameCookie} `;
+    
+    // Create a logout link using JavaScript
+    const logoutLink = document.createElement('a');
+    logoutLink.textContent = '(logout)';
+    logoutLink.style.fontWeight = 'normal';
+    logoutLink.style.fontStyle = 'italic';
+    logoutLink.style.marginLeft = '10px';
+    logoutLink.href = '#';
+    
+    // Add a click event to the logout link
+    logoutLink.addEventListener('click', () => {
+      deleteCookiesAndShowForm();
+      welcomeMessage.remove();
+    });
+
+    // Append the logout link to the welcome message
+    welcomeMessage.appendChild(logoutLink);
+
+    // Replace the body content with the welcome message
+    //body.innerHTML = '';
+    body.appendChild(welcomeMessage);
+  } else {
+    showForm();
   }
-  return "";
-}
-
-function showCookies() {
-  const cookies = document.cookie.split(";");
-
-  const firstnameCookie = getCookie("firstname");
-  const emailCookie = getCookie("email");
-  const cookiesOutput = document.getElementById("output");
-
-  const p = document.createElement("p");
-  p.innerHTML = `Email: ${emailCookie} - Firstname: ${firstnameCookie}`;
-
-  cookies.forEach((cookie) => {
-    const [name, value] = cookie.trim().split("=");
-    p.innerHTML += `${name}=${value}, `;
-  });
-
-  cookiesOutput.innerHTML = "";
-  cookiesOutput.appendChild(p);
 }
 
 function showForm() {
-  const welcomeMessage = document.getElementById('welcome-message');
+  const welcomeMessage = document.querySelector('h1');
   if (welcomeMessage) {
     welcomeMessage.remove();
   }
@@ -50,49 +59,19 @@ function showForm() {
   loginForm.style.display = 'block';
 }
 
-function hideForm() {
-  const loginForm = document.getElementById('login-form');
-  loginForm.style.display = 'none';
-}
-
 function deleteCookiesAndShowForm() {
-  document.cookie = 'firstname=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
-  document.cookie = 'email=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+  // Delete cookies using js-cookie
+  Cookies.remove('firstname');
+  Cookies.remove('email');
+
   showForm();
 }
 
-function showWelcomeMessageOrForm() {
-  const firstnameCookie = getCookie('firstname');
-  const welcomeMessage = document.createElement('h1');
-  welcomeMessage.id = 'welcome-message';
+// Attach event listener to the Log In button
+document.getElementById('login').addEventListener('click', setCookiesAndShowWelcomeMessage);
 
-   if (firstnameCookie) {
-    welcomeMessage.innerHTML = `Welcome ${firstnameCookie} <a href="#" id="logout-link">(logout)</a>`;
-    welcomeMessage.style.fontWeight = 'normal';
-    welcomeMessage.style.fontStyle = 'italic';
-    welcomeMessage.style.marginRight = '10px';
-
-    welcomeMessage.querySelector('#logout-link').addEventListener('click', () => {
-      deleteCookiesAndShowForm();
-      welcomeMessage.remove();
-    });
-  } else {
-    showForm();
-  }
-
-  const body = document.body;
-  //body.innerHTML = '';
-  body.appendChild(welcomeMessage); 
-}
-
-// Attach event listeners to buttons
-document.getElementById('login').addEventListener('click', setCookies);
+// Attach event listener to the Show the cookies button
 document.getElementById('showcookies').addEventListener('click', showCookies);
-document.getElementById('login-button').addEventListener('click', () => {
-  hideForm();
-  setCookies();
-  showWelcomeMessageOrForm();
-});
 
 // Call showWelcomeMessageOrForm to initialize the page
 showWelcomeMessageOrForm();
